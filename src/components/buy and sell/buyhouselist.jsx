@@ -20,7 +20,7 @@ const BuyHouseList = () => {
     )
   }
 
-  if (houses.length === 0) {
+  if (houses?.length === 0) {
     return (
       <Stack maxH='400px'>
         <Heading size="lg" p={{base: '6', md: '10'}} align="center">
@@ -35,14 +35,14 @@ const BuyHouseList = () => {
     >
       {
         currentUser  ? (
-            docs && docs.filter(doc => doc.email !== currentUser.email).map((doc) =>
+            docs && docs?.filter(doc => doc.email !== currentUser.email).map((doc) =>
             <Link to={`/property-details/${doc.id}`} key={doc.id}>
             <AuctionCard key={doc.id} item={doc} />
           </Link>
             )
         )  :    (
             docs && 
-            docs.map(doc=> 
+            docs?.map(doc=> 
           <Link to={`/property-details/${doc.id}`} key={doc.id}>
             <AuctionCard key={doc.id} item={doc} />
           </Link>

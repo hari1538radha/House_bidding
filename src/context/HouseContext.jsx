@@ -14,7 +14,7 @@ const HouseProvider = ({children}) =>{
     const [isLoading, setIsLoading] = useState(false);
     
     useEffect(() => {
-        const allCountries = houses.map(house=>{
+        const allCountries = houses?.map(house=>{
             return house.country;
         })
         const uniqueCountries = [...new Set(allCountries)];
@@ -22,7 +22,7 @@ const HouseProvider = ({children}) =>{
     }, []);
 
     useEffect(() => {
-        const allPropertyTypes = houses.map(house=>{
+        const allPropertyTypes = houses?.map(house=>{
             return house.type;
         })
         const uniquePropertyTypes = [...new Set(allPropertyTypes)];
@@ -48,7 +48,7 @@ const HouseProvider = ({children}) =>{
             
             // country is selected
             if(!isDefault(country) && isDefault(price) && isDefault(property)){
-                return house.country === country;
+                return house?.country === country;
             }
 
             // price is selected
@@ -58,17 +58,17 @@ const HouseProvider = ({children}) =>{
             
             // property is selected
             if(isDefault(country) && isDefault(price) && !isDefault(property)){
-                return house.type === property;
+                return house?.type === property;
             }
             
             // country & price is selected
             if(!isDefault(country) && !isDefault(price) && isDefault(property)){
-                return house.country === country && (housePrice >= minPrice) && (housePrice <= maxPrice);
+                return house?.country === country && (housePrice >= minPrice) && (housePrice <= maxPrice);
             }
             
             // country & property is selected
             if(!isDefault(country) && isDefault(price) && !isDefault(property)){
-                return house.country === country && house.type === property;
+                return house?.country === country && house.type === property;
             }
             
             // price & property is selected
@@ -77,14 +77,14 @@ const HouseProvider = ({children}) =>{
             }
     
             // all are selected 
-            if(house.country === country && housePrice >= minPrice && housePrice <= maxPrice && house.type === property){
+            if(house?.country === country && housePrice >= minPrice && housePrice <= maxPrice && house.type === property){
                 return house;
             }
         })
 
         // setHouses(filteredHouses)
         setTimeout(() => {
-            filteredHouses.length>0 ? setHouses(filteredHouses) : setHouses([]);
+            filteredHouses?.length>0 ? setHouses(filteredHouses) : setHouses([]);
             setIsLoading(false);
         }, 1000);
     }
